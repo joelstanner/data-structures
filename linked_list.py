@@ -16,7 +16,6 @@ class LinkedList(object):
         #point new val next at prev head
 
 
-
     def pop(self):
         oldHead = self.head
         try:
@@ -64,7 +63,21 @@ class LinkedList(object):
         #check each item for equality
 
     def remove(self, node):
-        pass
+        pointer = self.head
+
+        # is node the first item?
+        if pointer is node:
+            self.head = pointer.next
+            return
+
+        while pointer.next:
+            if pointer.next is node:
+                pointer.next = pointer.next.next
+                return
+
+            pointer = pointer.next
+
+
         #start at head, if first, update .next to head
         #loop through till you find in node.next
         #update node.next to node.next.next

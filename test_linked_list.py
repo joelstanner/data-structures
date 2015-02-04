@@ -1,4 +1,5 @@
 import pytest
+import pdb
 from linked_list import LinkedList, Node
 
 
@@ -38,7 +39,7 @@ def test_size():
     test_list.insert('test2')
     test_list.insert('test')
     test_list.insert('test2')
-    
+
     assert test_list.size() == 4
 
 
@@ -62,7 +63,7 @@ def test_size_after_pop():
     test_list.insert('test')
     test_list.insert('test2')
     test_list.pop()
-    
+
     assert test_list.size() == 3
 
 
@@ -93,7 +94,22 @@ def test_search_none():
     assert test_list.search('test4') is None
 
 
-def test_remove():
-    pass
+def test_remove_removes_node():
+    test_list = LinkedList()
+    test_list.insert('test')
+    test_list.insert('test2')
+    test_list.insert('tester')
+    test_node = test_list.head
+    test_node_id = id(test_node)
+    test_list.insert('test3')
+
+
+    #pdb.set_trace()
+    #print(test_node_id)
+
+    test_list.remove(test_node)
+    
+    assert test_list.search('tester') is None
+
 
 
