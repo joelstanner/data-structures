@@ -33,7 +33,26 @@ def test_pop_empty():
 
 
 def test_size():
-    pass
+    test_list = LinkedList()
+    test_list.insert('test')
+    test_list.insert('test2')
+    test_list.insert('test')
+    test_list.insert('test2')
+    
+    assert test_list.size() == 4
+
+
+def test_size_one():
+    test_list = LinkedList()
+    test_list.insert('test')
+
+    assert test_list.size() == 1
+
+
+def test_size_zero():
+    test_list = LinkedList()
+
+    assert test_list.size() == 0
 
 def test_search():
     pass
