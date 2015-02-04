@@ -2,24 +2,22 @@ class LinkedList(object):
     """docstring for LinkedList"""
 
 
-    def __init__(self, arg):
-        super(LinkedList, self).__init__()
-        self.arg = arg
+    def __init__(self):
+        self.head = None
 
 
     def __str__(self):
         pass
 
-    def insert (self, val):
-        self.head = Node(self.head, val)
-
+    def insert(self, val):
+        self.head = Node(val, self.head)
         #store head val
         #insert val at head
         #point new val next at prev head
 
 
 
-    def pop (self):
+    def pop(self):
         oldHead = self.head
         self.head = self.head.next
         return oldHead
@@ -29,7 +27,7 @@ class LinkedList(object):
         #return old head
 
 
-    def size (self):
+    def size(self):
         counter = 0
         pointer = self.head
 
