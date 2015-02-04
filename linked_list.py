@@ -5,13 +5,14 @@ class LinkedList(object):
     def __init__(self, arg):
         super(LinkedList, self).__init__()
         self.arg = arg
-   
+
 
     def __str__(self):
-
+        pass
 
     def insert (self, val):
-        self.head = new Node(self.head, val)
+        self.head = Node(self.head, val)
+
         #store head val
         #insert val at head
         #point new val next at prev head
@@ -38,17 +39,19 @@ class LinkedList(object):
             while pointer.next:
                 pointer = pointer.next
                 counter += 1
-                
+
         return counter
 
         #start at head
         #loop through with counter
 
     def search(self, val):
+        pass
         #start at head
         #check each item for equality
 
     def remove(self, node):
+        pass
         #start at head, if first, update .next to head
         #loop through till you find in node.next
         #update node.next to node.next.next
@@ -58,6 +61,6 @@ class LinkedList(object):
 
 class Node(object):
 
-    def __init__(self, nextNode=None, val):
+    def __init__(self, val, nextNode=None):
         self.val = val
         self.next = nextNode
