@@ -7,7 +7,23 @@ class LinkedList(object):
 
 
     def __str__(self):
-        pass
+        counter = 0
+        pointer = self.head
+        printout = "("
+
+        # 1st object case
+        if pointer:
+            counter += 1
+            printout += "{}, '{}'".format(counter, pointer.val)
+
+        while pointer.next:
+            counter += 1
+            printout += ", {}, '{}'".format(counter, pointer.next.val)
+            pointer = pointer.next
+
+        printout += ")"
+
+        return printout
 
     def insert(self, val):
         self.head = Node(val, self.head)

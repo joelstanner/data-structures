@@ -112,4 +112,18 @@ def test_remove_removes_node():
     assert test_list.search('tester') is None
 
 
+def test__str__returns_correct_output():
+    test_list = LinkedList()
+    test_list.insert('test')
+    test_list.insert('test2')
+    test_list.insert('test3')
+    
+    #pdb.set_trace()
+    
+    assert str(test_list) == "(1, 'test3', 2, 'test2', 3, 'test')"
 
+def test__str__returns_single_output_if_only_one_item():
+    test_list = LinkedList()
+    test_list.insert('test')
+    
+    assert str(test_list) == "(1, 'test')"
