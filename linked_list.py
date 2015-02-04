@@ -48,7 +48,18 @@ class LinkedList(object):
         #loop through with counter
 
     def search(self, val):
-        pass
+        pointer = self.head
+
+        if pointer.val == val:
+            return pointer
+
+        while pointer.next:
+            if pointer.next.val == val:
+                return pointer.next
+
+            pointer = pointer.next
+
+        return None
         #start at head
         #check each item for equality
 

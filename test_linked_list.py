@@ -54,8 +54,44 @@ def test_size_zero():
 
     assert test_list.size() == 0
 
-def test_search():
-    pass
+
+def test_size_after_pop():
+    test_list = LinkedList()
+    test_list.insert('test')
+    test_list.insert('test2')
+    test_list.insert('test')
+    test_list.insert('test2')
+    test_list.pop()
+    
+    assert test_list.size() == 3
+
+
+def test_search_first():
+    test_list = LinkedList()
+    test_list.insert('test')
+    test_list.insert('test2')
+    test_list.insert('test3')
+
+    assert test_list.search('test3').val == 'test3'
+
+
+def test_search_last():
+    test_list = LinkedList()
+    test_list.insert('test')
+    test_list.insert('test2')
+    test_list.insert('test3')
+
+    assert test_list.search('test').val == 'test'
+
+
+def test_search_none():
+    test_list = LinkedList()
+    test_list.insert('test')
+    test_list.insert('test2')
+    test_list.insert('test3')
+
+    assert test_list.search('test4') is None
+
 
 def test_remove():
     pass
