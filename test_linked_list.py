@@ -15,7 +15,7 @@ def test_pop_returns_correct_head():
     test_list = LinkedList()
     test_list.insert('test')
 
-    assert test_list.pop().val == "test"
+    assert test_list.pop() == "test"
 
 def test_pop_updates_head():
     test_list = LinkedList()
@@ -94,22 +94,28 @@ def test_search_none():
     assert test_list.search('test4') is None
 
 
-def test_remove_removes_node():
+def test_remove_unique_node():
     test_list = LinkedList()
     test_list.insert('test')
     test_list.insert('test2')
     test_list.insert('tester')
-    test_node = test_list.head
-    test_node_id = id(test_node)
-    test_list.insert('test3')
+
+    the_node = test_list.search('tester')
+
+    test_list.insert('tester')
+
+    test_list.remove(the_node)
+
+    pointer = test_list.head
 
 
-    #pdb.set_trace()
-    #print(test_node_id)
+    assert pointer is not the_node
 
-    test_list.remove(test_node)
-    
-    assert test_list.search('tester') is None
+    while pointer.next:
+        assert pointer.next is not the_node
+        pointer = pointer.next
+
+
 
 
 def test__str__returns_correct_output():
@@ -117,8 +123,7 @@ def test__str__returns_correct_output():
     test_list.insert('test')
     test_list.insert('test2')
     test_list.insert('test3')
-    
-    #pdb.set_trace()
+
     
     assert str(test_list) == "(1, 'test3', 2, 'test2', 3, 'test')"
 

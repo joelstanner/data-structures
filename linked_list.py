@@ -1,10 +1,8 @@
 class LinkedList(object):
     """docstring for LinkedList"""
 
-
     def __init__(self):
         self.head = None
-
 
     def __str__(self):
         counter = 0
@@ -27,10 +25,6 @@ class LinkedList(object):
 
     def insert(self, val):
         self.head = Node(val, self.head)
-        #store head val
-        #insert val at head
-        #point new val next at prev head
-
 
     def pop(self):
         oldHead = self.head
@@ -39,12 +33,7 @@ class LinkedList(object):
         except AttributeError:
             return None
 
-        return oldHead
-
-        #get head
-        #update head to old head.next
-        #return old head
-
+        return oldHead.val
 
     def size(self):
         counter = 0
@@ -59,9 +48,6 @@ class LinkedList(object):
 
         return counter
 
-        #start at head
-        #loop through with counter
-
     def search(self, val):
         pointer = self.head
 
@@ -75,8 +61,6 @@ class LinkedList(object):
             pointer = pointer.next
 
         return None
-        #start at head
-        #check each item for equality
 
     def remove(self, node):
         pointer = self.head
@@ -93,13 +77,9 @@ class LinkedList(object):
 
             pointer = pointer.next
 
+    def display(self):
+        print self.__str__()
 
-        #start at head, if first, update .next to head
-        #loop through till you find in node.next
-        #update node.next to node.next.next
-
-
-    #def print(self)
 
 class Node(object):
 
