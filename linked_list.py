@@ -19,7 +19,11 @@ class LinkedList(object):
 
     def pop(self):
         oldHead = self.head
-        self.head = self.head.next
+        try:
+            self.head = self.head.next
+        except AttributeError:
+            return None
+
         return oldHead
 
         #get head

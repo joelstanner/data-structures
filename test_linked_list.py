@@ -26,6 +26,11 @@ def test_pop_updates_head():
     assert test_list.head.val == "test"
 
 
+def test_pop_empty():
+    test_list = LinkedList()
+
+    assert test_list.pop() is None
+
 
 def test_size():
     pass
