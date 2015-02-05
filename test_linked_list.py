@@ -1,7 +1,5 @@
-import pytest
-import pdb
-from linked_list import LinkedList, Node
-
+from __future__ import unicode_literals
+from linked_list import LinkedList
 
 
 def test_value_inserts_at_the_head():

@@ -1,8 +1,14 @@
+from __future__ import unicode_literals
+
+
 class LinkedList(object):
     """docstring for LinkedList"""
 
     def __init__(self):
         self.head = None
+
+    def __repr__(self):
+        return self.__str__()
 
     def __str__(self):
         counter = 0
@@ -14,10 +20,10 @@ class LinkedList(object):
             counter += 1
             printout += "{}, '{}'".format(counter, pointer.val)
 
-        while pointer.next:
-            counter += 1
-            printout += ", {}, '{}'".format(counter, pointer.next.val)
-            pointer = pointer.next
+            while pointer.next:
+                counter += 1
+                printout += ", {}, '{}'".format(counter, pointer.next.val)
+                pointer = pointer.next
 
         printout += ")"
 
