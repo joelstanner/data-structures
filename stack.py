@@ -10,14 +10,13 @@ class Stack(object):
         """Take a data element and put it on the top of the stack"""
         self.top = Item(data, self.top)
 
-
     def pop(self):
         """Remove the top item from the stack, and return the value of it"""
         prevTop = self.top
         try:
             self.top = self.top.next_item
         except AttributeError:
-            raise ValueError
+            raise ValueError("The stack is empty")
 
         return prevTop.data
 
@@ -27,4 +26,4 @@ class Item(object):
     
     def __init__(self, data, next_item=None):
         self.data = data
-        self.next_item  = next_item
+        self.next_item = next_item

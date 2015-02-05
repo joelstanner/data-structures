@@ -23,7 +23,16 @@ def test_push_places_item_on_top():
     test_stack.push(42)
     
     assert test_stack.top.data == 42 
-    
+
+
+def test_push_empty():
+    test_stack = Stack()
+
+    with pytest.raises(TypeError) as excinfo:
+        test_stack.push()
+
+    assert 'push() takes exactly 2 arguments (1 given)' in str(excinfo.value)
+
 
 def test_pop():
     test_stack = Stack()
@@ -37,5 +46,7 @@ def test_pop():
 def test_pop_empty():
     test_stack = Stack()
 
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError) as excinfo:
         test_stack.pop()
+
+    assert 'The stack is empty' in str(excinfo.value)
