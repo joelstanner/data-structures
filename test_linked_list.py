@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from linked_list import LinkedList
-
+import pytest
 
 def test_constructor():
     test_list = LinkedList()
@@ -33,7 +33,8 @@ def test_pop_updates_head():
 def test_pop_empty():
     test_list = LinkedList()
 
-    assert test_list.pop() is None
+    with pytest.raises(ValueError):
+        test_list.pop()
 
 
 def test_size():
@@ -123,15 +124,15 @@ def test_remove_unique_node():
 
 def test__str__returns_correct_output():
     test_list = LinkedList()
-    test_list.insert('test')
     test_list.insert('test2')
+    test_list.insert(1)
     test_list.insert('test3')
+    test_list.insert(2)
 
-
-    assert str(test_list) == "(1, 'test3', 2, 'test2', 3, 'test')"
+    assert str(test_list) == "(2, 'test3', 1, 'test2')"
 
 def test__str__returns_single_output_if_only_one_item():
     test_list = LinkedList()
     test_list.insert('test')
 
-    assert str(test_list) == "(1, 'test')"
+    assert str(test_list) == "('test')"
