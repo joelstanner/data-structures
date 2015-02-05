@@ -41,7 +41,7 @@ class LinkedList(object):
         try:
             self.head = self.head.next
         except AttributeError:
-            return None
+            raise ValueError
 
         return oldHead.val
 

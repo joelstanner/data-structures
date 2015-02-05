@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from linked_list import LinkedList
-
+import pytest
 
 def test_constructor():
     test_list = LinkedList()
@@ -33,7 +33,8 @@ def test_pop_updates_head():
 def test_pop_empty():
     test_list = LinkedList()
 
-    assert test_list.pop() is None
+    with pytest.raises(ValueError):
+        test_list.pop()
 
 
 def test_size():
