@@ -13,3 +13,13 @@ def test_push_accepts_item():
     test_stack.push(item)
     
     assert test_stack.top == item
+
+def test_push_places_item_on_top():
+    test_stack = Stack()
+    item = Item("test")
+    item2 = Item(42)
+    test_stack.push(item)
+    test_stack.push(item2)
+    
+    assert test_stack.top == item2
+    
