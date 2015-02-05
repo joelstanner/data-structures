@@ -2,11 +2,11 @@
 
 This repository holds sample code for a number of classic data structures implemented in Python.
 
-###Includes
+### Includes
 
-*Linked List
+* Linked List
 
-*Stack
+* Stack
 
 ## Resources
 [Linked Lists Wiki](http://en.wikipedia.org/wiki/Linked_list)
