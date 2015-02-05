@@ -2,6 +2,11 @@ from __future__ import unicode_literals
 from linked_list import LinkedList
 
 
+def test_constructor():
+    test_list = LinkedList()
+
+    assert test_list.head is None
+
 def test_value_inserts_at_the_head():
     test_list = LinkedList()
     test_list.insert('test')
@@ -122,11 +127,11 @@ def test__str__returns_correct_output():
     test_list.insert('test2')
     test_list.insert('test3')
 
-    
+
     assert str(test_list) == "(1, 'test3', 2, 'test2', 3, 'test')"
 
 def test__str__returns_single_output_if_only_one_item():
     test_list = LinkedList()
     test_list.insert('test')
-    
+
     assert str(test_list) == "(1, 'test')"
