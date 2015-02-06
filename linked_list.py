@@ -19,7 +19,7 @@ class LinkedList(object):
         printout = "("
 
         while pointer:
-            if type(pointer.val) == unicode or str:
+            if type(pointer.val) in (unicode, str):
                 printout += "'{}'".format(pointer.val)
             else:
                 printout += "{}".format(pointer.val)
@@ -57,7 +57,7 @@ class LinkedList(object):
         return counter
 
     def search(self, val):
-        """Return the node containing 'val' in the list, if present, else None"""
+        """Return the node containing 'val' if present, else None"""
         pointer = self.head
 
         while pointer:
