@@ -19,7 +19,7 @@ class LinkedList(object):
         printout = "("
 
         while pointer:
-            if type(pointer.val) == unicode:
+            if type(pointer.val) == unicode or str:
                 printout += "'{}'".format(pointer.val)
             else:
                 printout += "{}".format(pointer.val)
@@ -41,7 +41,7 @@ class LinkedList(object):
         try:
             self.head = self.head.next
         except AttributeError:
-            raise ValueError
+            raise ValueError("The list is empty")
 
         return oldHead.val
 
@@ -60,20 +60,16 @@ class LinkedList(object):
         """Return the node containing 'val' in the list, if present, else None"""
         pointer = self.head
 
-        if pointer.val == val:
-            return pointer
-
         while pointer:
             if pointer.val == val:
                 return pointer
 
             pointer = pointer.next
 
-        return None
-
     def remove(self, node):
-        """Remove the given node from the list, wherever it might be (node must
-        be an item in the list)"""
+        """Remove the given node from the list (node must
+        be an item in the list)
+        """
         pointer = self.head
 
         # is node the first item?
