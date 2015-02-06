@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """This module creates the functionality of a linked list data structure.
 find more information at http://en.wikipedia.org/wiki/Linked_list
 """
@@ -14,7 +16,7 @@ class LinkedList(object):
     def __repr__(self):
         return self.__str__()
 
-    def __str__(self):
+    def __unicode__(self):
         pointer = self.head
         printout = "("
 
@@ -30,6 +32,10 @@ class LinkedList(object):
         printout += ")"
 
         return printout
+
+    def __str__(self):
+        printout = unicode(self)
+        return printout.encode("utf-8")
 
     def insert(self, val):
         """insert the value 'val' at the head of the list"""
