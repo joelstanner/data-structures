@@ -5,7 +5,10 @@ This repository holds sample code for a number of classic data structures implem
 ### Includes
 
 * Linked List  
-* Stack  
+* Stack
+* Proper Parentheticals Challenge
+    - Analyzes a unicode string to determine whether any parentheses in it are open, balanced, or broken
+
 
 ## Resources
 [Linked Lists Wiki](http://en.wikipedia.org/wiki/Linked_list)  

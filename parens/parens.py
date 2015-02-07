@@ -1,12 +1,16 @@
-def Parens(string):
-    openParens = 0
-    for char in string:
-        print "char, Final Value, Open Parens:{}, {}".format(char, openParens)
+def Parens(unicode):
+    '''Returns 0 if string is balanced (all parentheses are matched)
+       Returns 1 if string is open (has an open paren that is unclosed)
+       Returns -1 if string is broken (closed paren not preceded by open one)
+       '''
 
-        if char == "(":
+    openParens = 0
+    for char in unicode:
+
+        if char == u"(":
             openParens += 1
 
-        elif char == ")":
+        elif char == u")":
             if openParens > 0:
                 openParens -= 1
             else:
