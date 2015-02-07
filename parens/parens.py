@@ -16,7 +16,4 @@ def Parens(unicode):
             else:
                 return -1
 
-    if openParens:
-        return 1
-    else:
-        return 0
+    return int(openParens > 0)
