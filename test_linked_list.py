@@ -1,11 +1,14 @@
-from __future__ import unicode_literals
+# -*- coding: utf-8 -*-
+
 from linked_list import LinkedList
 import pytest
+
 
 def test_constructor():
     test_list = LinkedList()
 
     assert test_list.head is None
+
 
 def test_value_inserts_at_the_head():
     test_list = LinkedList()
@@ -19,6 +22,7 @@ def test_pop_returns_correct_head():
     test_list.insert('test')
 
     assert test_list.pop() == "test"
+
 
 def test_pop_updates_head():
     test_list = LinkedList()
@@ -112,14 +116,11 @@ def test_remove_unique_node():
 
     pointer = test_list.head
 
-
     assert pointer is not the_node
 
     while pointer.next:
         assert pointer.next is not the_node
         pointer = pointer.next
-
-
 
 
 def test__str__returns_correct_output():
@@ -131,8 +132,21 @@ def test__str__returns_correct_output():
 
     assert str(test_list) == "(2, 'test3', 1, 'test2')"
 
+
 def test__str__returns_single_output_if_only_one_item():
     test_list = LinkedList()
     test_list.insert('test')
 
     assert str(test_list) == "('test')"
+
+
+def test_unicode():
+    test_list = LinkedList()
+    test_list.insert(u'ö')
+    assert unicode(test_list) == u"('ö')"
+
+
+def test_string():
+    test_list = LinkedList()
+    test_list.insert(u'éclaire')
+    assert str(test_list) == "('\xc3\xa9claire')"

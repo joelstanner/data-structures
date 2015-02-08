@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """This module creates the functionality of a linked list data structure.
 find more information at http://en.wikipedia.org/wiki/Linked_list
 """
@@ -14,12 +16,12 @@ class LinkedList(object):
     def __repr__(self):
         return self.__str__()
 
-    def __str__(self):
+    def __unicode__(self):
         pointer = self.head
         printout = "("
 
         while pointer:
-            if type(pointer.val) == unicode:
+            if type(pointer.val) in (unicode, str):
                 printout += "'{}'".format(pointer.val)
             else:
                 printout += "{}".format(pointer.val)
@@ -31,6 +33,10 @@ class LinkedList(object):
 
         return printout
 
+    def __str__(self):
+        printout = unicode(self)
+        return printout.encode("utf-8")
+
     def insert(self, val):
         """insert the value 'val' at the head of the list"""
         self.head = Node(val, self.head)
@@ -41,7 +47,7 @@ class LinkedList(object):
         try:
             self.head = self.head.next
         except AttributeError:
-            raise ValueError
+            raise ValueError("The list is empty")
 
         return oldHead.val
 
@@ -57,11 +63,8 @@ class LinkedList(object):
         return counter
 
     def search(self, val):
-        """Return the node containing 'val' in the list, if present, else None"""
+        """Return the node containing 'val' if present, else None"""
         pointer = self.head
-
-        if pointer.val == val:
-            return pointer
 
         while pointer:
             if pointer.val == val:
@@ -69,11 +72,10 @@ class LinkedList(object):
 
             pointer = pointer.next
 
-        return None
-
     def remove(self, node):
-        """Remove the given node from the list, wherever it might be (node must
-        be an item in the list)"""
+        """Remove the given node from the list (node must
+        be an item in the list)
+        """
         pointer = self.head
 
         # is node the first item?
