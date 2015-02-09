@@ -2,7 +2,7 @@
 
 
 class Queue(object):
-
+    """Implement a queue data structure"""
     def __init__(self):
         self.front = None
         self.back = None
@@ -12,7 +12,6 @@ class Queue(object):
         while current:
             yield current
             current = current.next_item
-
 
     def enqueue(self, val):
         """Take item value, add to the back of the queue"""
@@ -25,7 +24,7 @@ class Queue(object):
 
     def dequeue(self):
         """Remove the front item from the queue and return its value"""
-        
+
         prevFront = self.front
         try:
             self.front = self.front.next_item
@@ -36,7 +35,7 @@ class Queue(object):
 
     def size(self):
         count = 0
-        for item in self:
+        for _ in self:
             count += 1
 
         return count
