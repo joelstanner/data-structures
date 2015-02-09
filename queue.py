@@ -7,6 +7,13 @@ class Queue(object):
         self.front = None
         self.back = None
 
+    def __iter__(self):
+        current = self.front
+        while current:
+            yield current
+            current = current.next_item
+
+
     def enqueue(self, val):
         """Take item value, add to the back of the queue"""
         new_item = Item(val)
@@ -18,7 +25,21 @@ class Queue(object):
 
     def dequeue(self):
         """Remove the front item from the queue and return its value"""
-        pass
+        
+        prevFront = self.front
+        try:
+            self.front = self.front.next_item
+        except AttributeError:
+            raise AttributeError("The queue is empty")
+
+        return prevFront.val
+
+    def size(self):
+        count = 0
+        for item in self:
+            count += 1
+
+        return count
 
 
 class Item(object):
