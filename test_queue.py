@@ -45,6 +45,8 @@ def test_dequeue_empty(test_queue):
 
 def test_size(test_queue):
     assert test_queue.size() == 2
+    test_queue.enqueue(42)
+    assert test_queue.size() == 3
 
 
 def test_size_zero():
