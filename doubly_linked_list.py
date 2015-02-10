@@ -26,7 +26,7 @@ class DoublyLinkedList(object):
                 printout += "'{}'".format(pointer.val)
             else:
                 printout += "{}".format(pointer.val)
-            pointer = pointer.next
+            pointer = pointer.next_node
             if pointer:
                 printout += ", "
 
@@ -108,8 +108,8 @@ class DoublyLinkedList(object):
             pointer = pointer.next_node
 
     def remove(self, val):
-        """Remove the given node from the list (node must
-        be an item in the list)
+        """Remove the first node with the given value from the list,
+           raises exception if not found
         """
         rem_node = self.search(val)
         if rem_node:

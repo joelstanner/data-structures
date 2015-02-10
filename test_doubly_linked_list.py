@@ -74,31 +74,47 @@ def test_remove_value(test_dll):
     assert test_dll.search('test3') is None
 
 
+def test_remove_value_not_in_list(test_dll):
+    with pytest.raises(ValueError) as excinfo:
+        test_dll.remove('test4')
+    assert 'Value not found' in str(excinfo.value)
 
-#def test__str__returns_correct_output():
-#    test_list = LinkedList()
-#    test_list.insert('test2')
-#    test_list.insert(1)
-#    test_list.insert('test3')
-#    test_list.insert(2)
-#
-#    assert str(test_list) == "(2, 'test3', 1, 'test2')"
-#
-#
-#def test__str__returns_single_output_if_only_one_item():
-#    test_list = LinkedList()
-#    test_list.insert('test')
-#
-#    assert str(test_list) == "('test')"
-#
-#
-#def test_unicode():
-#    test_list = LinkedList()
-#    test_list.insert(u'ö')
-#    assert unicode(test_list) == u"('ö')"
-#
-#
-#def test_string():
-#    test_list = LinkedList()
-#    test_list.insert(u'éclaire')
-#    assert str(test_list) == "('\xc3\xa9claire')"
+
+def test_remove_last_item():
+    test_list = Dll()
+    test_list.insert(5)
+    test_list.remove(5)
+    assert test_list.head is None and test_list.tail is None
+
+
+def test_remove_updates_head(test_dll):
+    test_dll.remove('test2')
+    assert test_dll.pop() == 'test1'
+
+
+def test_remove_updates_tail(test_dll):
+    test_dll.remove('test3')
+    assert test_dll.shift() == 'test1'
+
+
+def test__str__returns_correct_output(test_dll):
+    assert str(test_dll) == "('test2', 'test1', 'test3')"
+
+
+def test__str__returns_single_output_if_only_one_item():
+    test_list = Dll()
+    test_list.insert('test')
+
+    assert str(test_list) == "('test')"
+
+
+def test_unicode():
+    test_list = Dll()
+    test_list.insert(u'ö')
+    assert unicode(test_list) == u"('ö')"
+
+
+def test_string():
+    test_list = Dll()
+    test_list.insert(u'éclaire')
+    assert str(test_list) == "('\xc3\xa9claire')"
