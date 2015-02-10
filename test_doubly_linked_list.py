@@ -42,6 +42,11 @@ def test_pop_updates_head(test_dll):
     assert test_dll.head.val == "test1"
 
 
+def test_pop_list_with_only_one_item(test_dll):
+    test_dll.pop()
+    test_dll.pop()
+    assert test_dll.pop() == "test3"
+
 def test_pop_empty():
     test_dll = Dll()
 

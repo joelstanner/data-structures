@@ -63,6 +63,10 @@ class DoublyLinkedList(object):
         oldHead = self.head
         try:
             self.head = self.head.next_node
+            try:
+                self.head.prev_node = None
+            except AttributeError:
+                pass
         except AttributeError:
             raise ValueError("The list is empty")
 
