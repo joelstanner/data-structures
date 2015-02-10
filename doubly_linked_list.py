@@ -72,6 +72,20 @@ class DoublyLinkedList(object):
 
         return oldHead.val
 
+    def shift(self):
+        """Shift the last value off the tail of the list and return it."""
+        oldTail = self.tail
+        try:
+            self.tail = self.tail.prev_node
+            try:
+                self.tail.next_node = None
+            except AttributeError:
+                pass
+        except AttributeError:
+            raise ValueError("The list is empty")
+
+        return oldTail.val
+
     def size(self):
         """Return the length of the list"""
         counter = 0
