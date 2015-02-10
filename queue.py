@@ -13,7 +13,6 @@ class Queue(object):
             yield current
             current = current.next_item
 
-
     def enqueue(self, val):
         """Take item value, add to the back of the queue"""
         new_item = Item(val)
@@ -25,7 +24,7 @@ class Queue(object):
 
     def dequeue(self):
         """Remove the front item from the queue and return its value"""
-        
+
         prevFront = self.front
         try:
             self.front = self.front.next_item
