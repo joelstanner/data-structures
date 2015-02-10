@@ -12,6 +12,7 @@ class DoublyLinkedList(object):
 
     def __init__(self):
         self.head = None
+        self.tail = None
 
     def __repr__(self):
         return self.__str__()
@@ -39,7 +40,13 @@ class DoublyLinkedList(object):
 
     def insert(self, val):
         """insert the value 'val' at the head of the list"""
-        self.head = Node(val, self.head)
+        new_node = Node(val, next_node=self.head)
+        try:
+            self.head.prev_node = new_node
+        except AttributeError:
+            self.tail = new_node
+
+        self.head = new_node
 
     def pop(self):
         """Pop the first value off the head of the list and return it."""
@@ -98,6 +105,7 @@ class DoublyLinkedList(object):
 class Node(object):
     """Create a node object to add into the linked list"""
 
-    def __init__(self, val, nextNode=None):
+    def __init__(self, val, prev_node=None, next_node=None):
         self.val = val
-        self.next = nextNode
+        self.next_node = next_node
+        self.prev_node = prev_node
