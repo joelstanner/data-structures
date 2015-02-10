@@ -9,6 +9,7 @@ def test_dll():
     test_dll = Dll()
     test_dll.insert('test1')
     test_dll.insert('test2')
+    test_dll.append('test3')
 
     return test_dll
 
@@ -23,6 +24,10 @@ def test_constructor():
 def test_value_inserts_at_the_head(test_dll):
 
     assert test_dll.head.val == "test2"
+
+
+def test_append(test_dll):
+    assert test_dll.tail.val == 'test3'
 
 
 def test_pop_returns_correct_head(test_dll):
@@ -44,6 +49,15 @@ def test_pop_empty():
         test_dll.pop()
 
 
+def test_shift_returns_correct_value(test_dll):
+    assert test_dll.shift() == 'test3'
+
+
+def test_shift_updates_tail_correctly(test_dll):
+    test_dll.shift()
+    assert test_dll.tail.val == 'test1'
+
+
 def test_search(test_dll):
 
     assert test_dll.search('test1').val == 'test1'
@@ -51,12 +65,13 @@ def test_search(test_dll):
 
 def test_remove_unique_node(test_dll):
     the_node = test_dll.search('test2')
-    test_dll.remove(the_node)
+    test_dll.remove('test2')
     pointer = test_dll.head
 
     while pointer:
         assert pointer is not the_node
         pointer = pointer.next
+
 
 
 #def test__str__returns_correct_output():
