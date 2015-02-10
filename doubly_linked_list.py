@@ -105,25 +105,24 @@ class DoublyLinkedList(object):
             if pointer.val == val:
                 return pointer
 
-            pointer = pointer.next
+            pointer = pointer.next_node
 
-    def remove(self, node):
+    def remove(self, val):
         """Remove the given node from the list (node must
         be an item in the list)
         """
-        pointer = self.head
-
-        # is node the first item?
-        if pointer is node:
-            self.head = pointer.next
-            return
-
-        while pointer.next:
-            if pointer.next is node:
-                pointer.next = pointer.next.next
-                return
-
-            pointer = pointer.next
+        rem_node = self.search(val)
+        if rem_node:
+            try:
+                rem_node.prev_node.next_node = rem_node.next_node
+            except AttributeError:
+                self.head = rem_node.next_node
+            try:
+                rem_node.next_node.prev_node = rem_node.prev_node
+            except AttributeError:
+                self.tail = rem_node.prev_node
+        else:
+            raise ValueError("Value not found")
 
     def display(self):
         """print the list represented as a Python tuple literal"""

@@ -47,6 +47,7 @@ def test_pop_list_with_only_one_item(test_dll):
     test_dll.pop()
     assert test_dll.pop() == "test3"
 
+
 def test_pop_empty():
     test_dll = Dll()
 
@@ -68,14 +69,9 @@ def test_search(test_dll):
     assert test_dll.search('test1').val == 'test1'
 
 
-def test_remove_unique_node(test_dll):
-    the_node = test_dll.search('test2')
-    test_dll.remove('test2')
-    pointer = test_dll.head
-
-    while pointer:
-        assert pointer is not the_node
-        pointer = pointer.next
+def test_remove_value(test_dll):
+    test_dll.remove('test3')
+    assert test_dll.search('test3') is None
 
 
 
