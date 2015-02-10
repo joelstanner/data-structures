@@ -48,6 +48,16 @@ class DoublyLinkedList(object):
 
         self.head = new_node
 
+    def append(self, val):
+        '''insert the value 'val' at the tail of the list'''
+        new_node = Node(val, prev_node=self.tail)
+        try:
+            self.tail.next_node = new_node
+        except AttributeError:
+            self.head = new_node
+
+        self.tail = new_node
+
     def pop(self):
         """Pop the first value off the head of the list and return it."""
         oldHead = self.head
