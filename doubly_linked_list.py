@@ -62,7 +62,7 @@ class DoublyLinkedList(object):
         """Pop the first value off the head of the list and return it."""
         oldHead = self.head
         try:
-            self.head = self.head.next
+            self.head = self.head.next_node
         except AttributeError:
             raise ValueError("The list is empty")
 
