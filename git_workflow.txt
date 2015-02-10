@@ -1,0 +1,10 @@
+# Git Workflow
+
+
+Begin work...
+1. If beginning a new project, create a new branch (name to match assignment) `git checkout -b new_branch`
+2. Else, pull from relevant branch with `git pull`
+3. While working, make frequent commits to track added features `git add , git commit `
+4. Every couple hours, pull from the remote repository for that branch, then push your work `git pull , git push `
+5. When you are finished working, pull from the remote repository, then push. Comment on your commit in Github to indicate tasks completed in that session and any outstanding tasks `git pull, git push`
+6. Finally when the project is ready to publish, repeat step 5 then issue a pull request to the master branch
