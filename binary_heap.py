@@ -16,16 +16,30 @@ class BinaryHeap(object):
     def push(self, val):
         self._list.append(val)
         child_pos = len(self._list) - 1
-      
-        while child_pos and self._list[child_pos] > self._list[(child_pos - 1) // 2]:
-            print self._list
+
+        while child_pos and (
+                self._list[child_pos] > self._list[(child_pos - 1) // 2]):
+            
             # swap parent and child
             self._switch(child_pos)
             child_pos = (child_pos - 1) // 2
 
 
     def pop(self):
-        pass
+        try:
+            top = self._list.pop(0)
+            parent_pos = 0
+            
+            if self._list[parent_pos] < self._list[parent_pos+1]:
+                self._switch(parent_pos+1)
+            elif self._list[parent_pos] < self._list[parent_pos+2]:
+                self._switch(parent_pos+2)
+
+            return top
+
+        except ValueError:
+            "The list is empty"
+
 
     def _switch(self, child_index):
         """swap the parent and child"""

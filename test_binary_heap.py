@@ -36,3 +36,10 @@ def test_push_value_is_inserted():
 
 def test_push_correctly_sorts(test_heap):
     assert test_heap._list == [9, 7, 8, 3]
+
+
+def test_pop_maintains_heap():
+    test_heap = B_heap(TEST_ARRAY)
+    test_heap.pop()
+
+    assert test_heap._list == [235, 123, 3, 7, 32]
