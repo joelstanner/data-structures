@@ -19,7 +19,7 @@ class BinaryHeap(object):
 
         while child_pos and (
                 self._list[child_pos] > self._list[(child_pos - 1) // 2]):
-            
+
             # swap parent and child
             self._switch(child_pos)
             child_pos = (child_pos - 1) // 2
@@ -29,7 +29,7 @@ class BinaryHeap(object):
         try:
             top = self._list.pop(0)
             parent_pos = 0
-            
+
             if self._list[parent_pos] < self._list[parent_pos+1]:
                 self._switch(parent_pos+1)
             elif self._list[parent_pos] < self._list[parent_pos+2]:
