@@ -33,6 +33,15 @@ def test_dequeue(test_queue):
     assert test_queue.dequeue() == "test"
 
 
+def test_dequeue_with_one():
+    test_queue = Queue()
+    test_queue.enqueue(3)
+    test_queue.dequeue()
+
+    assert test_queue.front is None
+    assert test_queue.back is None
+
+
 def test_dequeue_empty(test_queue):
     test_queue.dequeue()
     test_queue.dequeue()

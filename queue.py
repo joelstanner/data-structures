@@ -28,9 +28,10 @@ class Queue(object):
         prevFront = self.front
         try:
             self.front = self.front.next_item
+            if self.front is None:
+                self.back = self.front
         except AttributeError:
             raise AttributeError("The queue is empty")
-
         return prevFront.val
 
     def size(self):
