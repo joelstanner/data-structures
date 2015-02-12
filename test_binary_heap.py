@@ -4,6 +4,7 @@ import pytest
 from binary_heap import BinaryHeap as B_heap
 
 TEST_ARRAY = [123, 3, 32, 646, 7, 235]
+TEST_ARRAY_2 = [15, 8, 14, 7, 6, 12]
 
 
 @pytest.fixture(scope="function")
@@ -39,7 +40,8 @@ def test_push_correctly_sorts(test_heap):
 
 
 def test_pop_maintains_heap():
-    test_heap = B_heap(TEST_ARRAY)
+    test_heap = B_heap(TEST_ARRAY_2)
     test_heap.pop()
 
-    assert test_heap._list == [235, 123, 3, 7, 32]
+    assert test_heap._list == [14, 12, 7, 6, 8]
+

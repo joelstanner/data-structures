@@ -29,16 +29,19 @@ class BinaryHeap(object):
         try:
             top = self._list.pop(0)
             parent_pos = 0
-
-            if self._list[parent_pos] < self._list[parent_pos+1]:
-                self._switch(parent_pos+1)
-            elif self._list[parent_pos] < self._list[parent_pos+2]:
-                self._switch(parent_pos+2)
-
-            return top
+            try:
+                while (self._list[2 * parent_pos + 1]
+                       or self._list[2 * parent_pos + 2]):
+                    if self._list[parent_pos] < self._list[2 * parent_pos + 1]:
+                        self._switch(parent_pos+1)
+                    elif self._list[parent_pos] < self._list[2 * parent_pos + 2]:
+                        self._switch(parent_pos+2)
+                    parent_pos += 1
+            except IndexError:
+                return top
 
         except ValueError:
-            "The list is empty"
+            print "The list is empty"
 
 
     def _switch(self, child_index):
