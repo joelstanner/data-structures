@@ -39,9 +39,23 @@ def test_push_correctly_sorts(test_heap):
     assert test_heap._list == [9, 7, 8, 3]
 
 
+def test_pop_empty():
+    test_heap = B_heap()
+
+    with pytest.raises(IndexError) as error:
+        test_heap.pop()
+    assert 'The heap is empty' in str(error.value)
+
+
 def test_pop_maintains_heap():
     test_heap = B_heap(TEST_ARRAY_2)
-    test_heap.pop()
 
-    assert test_heap._list == [14, 12, 7, 6, 8]
+    assert test_heap.pop() == 15
+    assert test_heap._list == [14, 8, 12, 7, 6]
 
+
+def test_pop_maintains_heap_2():
+    test_heap = B_heap(TEST_ARRAY)
+
+    assert test_heap.pop() == 646
+    assert test_heap._list == [235, 123, 32, 3, 7]
