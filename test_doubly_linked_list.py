@@ -55,6 +55,15 @@ def test_pop_empty():
         test_dll.pop()
 
 
+def test_pop_with_one_updates_tail():
+    test_dll = Dll()
+    test_dll.insert(3)
+    test_dll.pop()
+
+    with pytest.raises(ValueError):
+        test_dll.shift()
+
+
 def test_shift_returns_correct_value(test_dll):
     assert test_dll.shift() == 'test3'
 
@@ -62,6 +71,15 @@ def test_shift_returns_correct_value(test_dll):
 def test_shift_updates_tail_correctly(test_dll):
     test_dll.shift()
     assert test_dll.tail.val == 'test1'
+
+
+def test_shift_with_one_updates_head():
+    test_dll = Dll()
+    test_dll.insert(3)
+    test_dll.shift()
+
+    with pytest.raises(ValueError):
+        test_dll.pop()
 
 
 def test_search(test_dll):

@@ -15,7 +15,7 @@ class DoublyLinkedList(object):
         self.tail = None
 
     def __repr__(self):
-        return self.__str__()
+        return str(self)
 
     def __unicode__(self):
         pointer = self.head
@@ -66,7 +66,7 @@ class DoublyLinkedList(object):
             try:
                 self.head.prev_node = None
             except AttributeError:
-                pass
+                self.tail = None
         except AttributeError:
             raise ValueError("The list is empty")
 
@@ -80,7 +80,7 @@ class DoublyLinkedList(object):
             try:
                 self.tail.next_node = None
             except AttributeError:
-                pass
+                self.head = None
         except AttributeError:
             raise ValueError("The list is empty")
 
@@ -126,7 +126,7 @@ class DoublyLinkedList(object):
 
     def display(self):
         """print the list represented as a Python tuple literal"""
-        print self.__str__()
+        print str(self)
 
 
 class Node(object):
