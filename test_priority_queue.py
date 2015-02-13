@@ -62,4 +62,25 @@ def test_insert_correctly_sorts_list_with_no_dups(test_priority_q_no_dups):
     assert result == expected_result
 
 
-def pop(test_priority_q_dups):
+def test_pop_empty(test_priority_q_dups):
+    test_pq = PriorityQueue()
+    with pytest.raises(IndexError) as error:
+        test_pq.pop()
+    assert 'The heap is empty' in str(error.value)
+
+
+def test_pop_maintains_heap(test_priority_q_dups):
+    assert test_priority_q_dups.pop().val == 'test1'
+    assert test_priority_q_dups.pop().val == 'test2'
+    assert test_priority_q_dups.pop().val == 'test3'
+    assert test_priority_q_dups.pop().val == 'test9'
+    assert test_priority_q_dups.pop().val == 'test10'
+
+
+def test_pop_one_item_works():
+    test_pq = PriorityQueue()
+    test_pq.insert(10, "test")
+    assert test_pq.pop().val == 'test'
+    with pytest.raises(IndexError) as error:
+        test_pq.pop()
+    assert 'The heap is empty' in str(error.value)
