@@ -2,7 +2,7 @@
 
 
 class Queue(object):
-
+    """Implement a queue data structure"""
     def __init__(self):
         self.front = None
         self.back = None
@@ -36,7 +36,7 @@ class Queue(object):
 
     def size(self):
         count = 0
-        for item in self:
+        for _ in self:
             count += 1
 
         return count
