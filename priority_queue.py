@@ -5,7 +5,6 @@ class PriorityQueue(object):
         self._list = []
         self.seniority = 0
 
-
     def insert(self, priority, val):
         '''inserts an item into the queue with the given priority and value'''
 
@@ -20,20 +19,6 @@ class PriorityQueue(object):
             # swap parent and child
             self._switch(child_pos)
             child_pos = (child_pos - 1) // 2
-
-
-
-
-
-        # new_item = Node(priority, val, self.front)
-        # self.front = new_item
-
-        # while new_item.next and new_item.priority >= new_item.next.priority:
-        #     if new_item is self.front:
-        #         self.front = new_item.next
-
-        #     new_item.next , new_item.next.next = new_item.next.next, new_item
-
 
     def pop(self):
         try:
@@ -78,18 +63,25 @@ class PriorityQueue(object):
                 if self._list[parent_pos].priority < larger_child.priority:
                     self._switch(larger_child_index)
 
-                # if not, you're done
-                else:
+                elif self._list[parent_pos].priority > larger_child.priority:
                     break
+                else:
+                    if self._list[parent_pos].seniority < larger_child.seniority:
+                        break
+                    else:
+                        self._switch(larger_child_index)
                 parent_pos = larger_child_index
                 children_pos = self._find_children(parent_pos)
 
             return top
         except IndexError:
-            raise IndexError("The heap is empty")
+            raise IndexError("The queue is empty")
 
-    def peek():
-        pass
+    def peek(self):
+        try:
+            return self._list[0].val
+        except AttributeError:
+            raise AttributeError("The queue is empty")
 
     def _switch(self, child_index):
         """Helper, swaps the child at the given index with its parent"""
@@ -98,7 +90,6 @@ class PriorityQueue(object):
         self._list[parent_index], self._list[child_index] = (
             self._list[child_index], self._list[parent_index]
         )
-
 
     def _find_children(self, parent):
         '''Helper, returns a list of children for the given parent,
@@ -113,8 +104,6 @@ class PriorityQueue(object):
             children_indices.append(2*parent+2)
 
         return children_indices
-
-
 
 
 class Node(object):
