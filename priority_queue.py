@@ -1,12 +1,15 @@
+# -*- coding: utf-8 -*-
+
 
 class PriorityQueue(object):
+    '''Implementation of a Priority Queue data structure'''
 
     def __init__(self):
         self._list = []
         self.seniority = 0
 
     def insert(self, priority, val):
-        '''inserts an item into the queue with the given priority and value'''
+        '''Insert an item into the queue with the given priority and value'''
 
         self.seniority += 1
         self._list.append(Node(priority, val, self.seniority))
@@ -21,6 +24,7 @@ class PriorityQueue(object):
             child_pos = (child_pos - 1) // 2
 
     def pop(self):
+        '''Removes the most important item from the queue'''
         try:
             self._list[0], self._list[-1] = self._list[-1], self._list[0]
             top = self._list.pop()
@@ -78,6 +82,7 @@ class PriorityQueue(object):
             raise IndexError("The queue is empty")
 
     def peek(self):
+        '''Return the most important item without removing it from the queue'''
         try:
             return self._list[0].val
         except IndexError:
@@ -107,8 +112,8 @@ class PriorityQueue(object):
 
 
 class Node(object):
-    def __init__(self, priority, val, seniority, next=None):
+    '''Node object to insert into the Priority Queue'''
+    def __init__(self, priority, val, seniority):
         self.priority = priority
         self.val = val
-        self.next = None
         self.seniority = seniority
