@@ -80,8 +80,8 @@ class PriorityQueue(object):
     def peek(self):
         try:
             return self._list[0].val
-        except AttributeError:
-            raise AttributeError("The queue is empty")
+        except IndexError:
+            raise IndexError("The queue is empty")
 
     def _switch(self, child_index):
         """Helper, swaps the child at the given index with its parent"""

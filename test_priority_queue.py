@@ -66,7 +66,7 @@ def test_pop_empty(test_priority_q_dups):
     test_pq = PriorityQueue()
     with pytest.raises(IndexError) as error:
         test_pq.pop()
-    assert 'The heap is empty' in str(error.value)
+    assert 'The queue is empty' in str(error.value)
 
 
 def test_pop_maintains_heap(test_priority_q_dups):
@@ -83,4 +83,16 @@ def test_pop_one_item_works():
     assert test_pq.pop().val == 'test'
     with pytest.raises(IndexError) as error:
         test_pq.pop()
-    assert 'The heap is empty' in str(error.value)
+    assert 'The queue is empty' in str(error.value)
+
+
+def test_peek_returns_correct_value(test_priority_q_dups):
+    result = test_priority_q_dups.peek()
+    assert result == 'test1'
+
+
+def test_peek_empty_raises_error():
+    test_pq = PriorityQueue()
+    with pytest.raises(IndexError) as error:
+        test_pq.peek()
+    assert 'The queue is empty' in str(error.value)
