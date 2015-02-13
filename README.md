@@ -21,9 +21,9 @@ This repository holds sample code for a number of classic data structures implem
 [Linked Lists Wiki](http://en.wikipedia.org/wiki/Linked_list)  
 [Stack Wiki](http://en.wikipedia.org/wiki/Stack_(abstract_data_type))  
 [Queue (data structure) from Princeton](http://www.princeton.edu/~achaney/tmve/wiki100k/docs/Queue_(data_structure).html)
-[Binary Heap Wiki](http://en.wikipedia.org/wiki/Binary_heap)
-[Binary Heap Visualization](http://www.comp.nus.edu.sg/~stevenha/visualization/heap.html)
-[Priority Queue Wiki](http://en.wikipedia.org/wiki/Priority_queue)  
+[Binary Heap Wiki](http://en.wikipedia.org/wiki/Binary_heap)  
+[Binary Heap Visualization](http://www.comp.nus.edu.sg/~stevenha/visualization/heap.html)  
+[Priority Queue Wiki](http://en.wikipedia.org/wiki/Priority_queue)   
 
 Pytest - for testing structure functions
 
