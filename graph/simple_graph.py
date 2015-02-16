@@ -20,7 +20,13 @@ class Graph(object):
         self.graph_dict[node] = []
 
     def add_edge(self, node_1, node_2):
-        self.graph_dict[node_1].append(node_2)
+        try:
+            self.graph_dict[node_1].append(node_2)
+        except KeyError:
+            self.add_node(node_1)
+            self.graph_dict[node_1].append(node_2)
+        if node_2 not in self.nodes():
+            self.add_node(node_2)
 
     def del_node(self, node):
         del self.graph_dict[node]

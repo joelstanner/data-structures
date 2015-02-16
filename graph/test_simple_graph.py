@@ -35,6 +35,22 @@ def test_add_edge():
     assert 42 in test.graph_dict[5]
 
 
+def test_add_edge_first_node_new():
+    test = Graph()
+    test.add_node(55)
+    test.add_edge("test", 55)
+    assert "test" in test.graph_dict
+    assert 55 in test.graph_dict["test"]
+
+
+def test_add_edge_second_node_new():
+    test = Graph()
+    test.add_node(55)
+    test.add_edge(55, "test")
+    assert "test" in test.graph_dict
+    assert "test" in test.graph_dict[55]
+
+
 def test_get_nodes(test_graph):
     assert test_graph.nodes() == ["test", 42, 5]
 
@@ -44,8 +60,10 @@ def test_get_edges(test_graph):
 
 
 def test_del_node(test_graph):
+    test_graph.add_edge("test", "purple")
     assert 42 in test_graph.nodes()
     test_graph.del_node(42)
     assert 42 not in test_graph.nodes()
     for edge_list in test_graph.graph_dict.values():
         assert 42 not in edge_list
+
