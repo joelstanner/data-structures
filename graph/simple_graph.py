@@ -8,16 +8,25 @@ class Graph(object):
         return self.graph_dict.keys()
 
     def edges(self):
-        return [(key, value) for key, value in self.graph_dict.items()]
+        edge_list = []
+        for key, value in self.graph_dict.items():
+            for item in value:
+                edge_list.append((key, item))
+        return edge_list
 
-    def add_nodes(self, node):
+        # return [(key, value) for key, value in self.graph_dict.items()]
+
+    def add_node(self, node):
         self.graph_dict[node] = []
 
     def add_edge(self, node_1, node_2):
         self.graph_dict[node_1].append(node_2)
 
     def del_node(self, node):
-        pass
+        del self.graph_dict[node]
+        for val_list in self.graph_dict.values():
+            if node in val_list:
+                val_list.remove(node)
 
     def del_edge(self, node_1, node_2):
         pass

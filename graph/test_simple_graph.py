@@ -32,12 +32,20 @@ def test_add_edge():
     test.add_node(42)
     test.add_edge(5, 42)
 
-    assert test.graph_dict[5] == 42
+    assert 42 in test.graph_dict[5]
 
 
 def test_get_nodes(test_graph):
-    assert test_graph.nodes() == [5, 42, "test"]
+    assert test_graph.nodes() == ["test", 42, 5]
 
 
 def test_get_edges(test_graph):
-    assert test_graph.edges() == [(5, 42), (42, "test"), ("test", 5)]
+    assert test_graph.edges() == [("test", 5), (42, "test"), (5, 42)]
+
+
+def test_del_node(test_graph):
+    assert 42 in test_graph.nodes()
+    test_graph.del_node(42)
+    assert 42 not in test_graph.nodes()
+    for edge_list in test_graph.graph_dict.values():
+        assert 42 not in edge_list
