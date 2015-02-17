@@ -29,19 +29,35 @@ class Graph(object):
             self.add_node(node_2)
 
     def del_node(self, node):
-        del self.graph_dict[node]
-        for val_list in self.graph_dict.values():
-            if node in val_list:
-                val_list.remove(node)
+        try:
+            del self.graph_dict[node]
+            for val_list in self.graph_dict.values():
+                if node in val_list:
+                    val_list.remove(node)
+        except KeyError:
+            raise KeyError("Node not found")
 
     def del_edge(self, node_1, node_2):
-        pass
+        try:
+            self.graph_dict[node_1].remove(node_2)
+        except KeyError:
+            raise KeyError("First node not found")
+        except ValueError:
+            raise ValueError("Edge not found")
 
     def has_node(self, node):
-        pass
+        return node in self.graph_dict
 
     def neighbors(self, node):
-        pass
+        try:
+            return self.graph_dict[node]
+        except KeyError:
+            raise KeyError("Node not found")
 
     def adjacent(self, node_1, node_2):
-        pass
+        if not self.has_node(node_2):
+            raise KeyError("Second node not found")
+        try:
+            return node_2 in self.graph_dict[node_1]
+        except KeyError:
+            raise KeyError("First node not found")
