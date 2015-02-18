@@ -8,13 +8,8 @@ class Graph(object):
         return self.graph_dict.keys()
 
     def edges(self):
-        edge_list = []
-        for key, value in self.graph_dict.items():
-            for item in value:
-                edge_list.append((key, item))
-        return edge_list
-
-        # return [(key, value) for key, value in self.graph_dict.items()]
+        return [(key, node) for key, value in
+                self.graph_dict.iteritems() for node in value]
 
     def add_node(self, node):
         self.graph_dict[node] = []
