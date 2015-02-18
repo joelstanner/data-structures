@@ -18,20 +18,24 @@ This repository holds sample code for a number of classic data structures implem
 * Priority Queue with Heap
     - This implementation of the priority queue imports our binary heap module and passes tuples consisting of priority, seniority, and value into a heap. This implementation is adapted from the Python Cookbook example cited in the Resources section.
 
+* Graph (unweighted, directed)
+    -  As described from [Python Patterns - Implementing Graphs](https://www.python.org/doc/essays/graphs/) "Graphs are networks consisting of nodes connected by edges or arcs. In directed graphs, the connections between nodes have a direction, and are called arcs."
+
 ## Resources
 [Linked Lists Wiki](http://en.wikipedia.org/wiki/Linked_list)  
 [Stack Wiki](http://en.wikipedia.org/wiki/Stack_(abstract_data_type))  
 [Queue (data structure) from Princeton](http://www.princeton.edu/~achaney/tmve/wiki100k/docs/Queue_(data_structure).html)
 [Binary Heap Wiki](http://en.wikipedia.org/wiki/Binary_heap)  
 [Binary Heap Visualization](http://www.comp.nus.edu.sg/~stevenha/visualization/heap.html)  
-[Priority Queue Wiki](http://en.wikipedia.org/wiki/Priority_queue)   
-[Implementing a Priority Queue from a Binary Heap](https://www.safaribooksonline.com/library/view/python-cookbook-3rd/9781449357337/ch01s05.html)
+[Priority Queue Wiki](http://en.wikipedia.org/wiki/Priority_queue)  
+[Implementing a Priority Queue from a Binary Heap](https://www.safaribooksonline.com/library/view/python-cookbook-3rd/9781449357337/ch01s05.html)  
+[Python Patterns - Implementing Graphs](https://www.python.org/doc/essays/graphs/)
 
 
 Pytest - for testing structure functions
 
 ##Collaborators
-Joel Stanner
+Joel Stanner  
 Henry Howes
 
 Thanks to Mark Ableidinger for guidance on the Binary Heap implementation
