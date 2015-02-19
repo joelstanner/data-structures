@@ -16,7 +16,7 @@ def test_graph():
 
 
 @pytest.fixture(scope="function")
-def test_traversal_graph():
+def test_depth_traversal_graph():
     test_graph = Graph()
     for i in range(10):
         test_graph.add_node(i)
@@ -31,6 +31,24 @@ def test_traversal_graph():
     test_graph.add_edge(2, 9)
 
     return test_graph
+
+
+@pytest.fixture(scope="function")
+def test_breadth_traversal_graph():
+    test_graph = Graph()
+    for i in range(1, 10):
+        test_graph.add_node(i)
+    test_graph.add_edge(1, 2)
+    test_graph.add_edge(1, 3)
+    test_graph.add_edge(1, 4)
+    test_graph.add_edge(2, 5)
+    test_graph.add_edge(2, 6)
+    test_graph.add_edge(4, 7)
+    test_graph.add_edge(4, 8)
+    test_graph.add_edge(5, 9)
+
+    return test_graph
+
 
 def test_constructor():
     test = Graph()
@@ -147,13 +165,13 @@ def test_adjacent_second_node_not_found(test_graph):
     assert 'Second node not found' in str(e.value)
 
 
-def test_depth_first_from_node_0(test_traversal_graph):
-    assert test_traversal_graph.depth_first_traversal(0) == [
+def test_depth_first_from_node_0(test_depth_traversal_graph):
+    assert test_depth_traversal_graph.depth_first_traversal(0) == [
         0, 1, 4, 5, 6, 7, 8, 2, 9, 3]
 
 
-def test_depth_first_from_node_1(test_traversal_graph):
-    assert test_traversal_graph.depth_first_traversal(1) == [
+def test_depth_first_from_node_1(test_depth_traversal_graph):
+    assert test_depth_traversal_graph.depth_first_traversal(1) == [
         1, 4, 5, 6, 7, 8]
 
 
@@ -181,3 +199,11 @@ def test_depth_multiple_edges():
 
 def test_depth_cyclic(test_graph):
     assert test_graph.depth_first_traversal(5) == [5, 42, "test"]
+
+
+def test_breadth_first(test_breadth_traversal_graph):
+    assert test_breadth_traversal_graph.breadth_first_traversal(1) == range(1, 10)
+
+
+
+
