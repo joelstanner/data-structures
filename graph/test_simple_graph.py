@@ -125,6 +125,4 @@ def test_adjacent_first_node_not_found(test_graph):
 
 
 def test_adjacent_second_node_not_found(test_graph):
-    with pytest.raises(KeyError) as e:
-        test_graph.adjacent("test", 47)
-    assert 'Second node not found' in str(e.value)
+    assert not test_graph.adjacent("test", 47)

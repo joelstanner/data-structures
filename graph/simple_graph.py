@@ -59,8 +59,6 @@ class Graph(object):
     def adjacent(self, node_1, node_2):
         """return True if there is an edge connecting n1 and n2, False if not
         """
-        if not self.has_node(node_2):
-            raise KeyError("Second node not found")
         try:
             return node_2 in self.graph_dict[node_1]
         except KeyError:
