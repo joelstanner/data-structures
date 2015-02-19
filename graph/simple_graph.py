@@ -16,19 +16,15 @@ class Graph(object):
 
     def add_node(self, node):
         """add a new node 'n' to the graph"""
-        self.graph_dict.setdefault(node,[])
+        self.graph_dict.setdefault(node, [])
 
     def add_edge(self, node_1, node_2):
         """add a new edge to the graph connecting 'n1' and 'n2', if either n1
         or n2 are not already present in the graph, they are added.
         """
-        try:
-            self.graph_dict[node_1].append(node_2)
-        except KeyError:
-            self.add_node(node_1)
-            self.graph_dict[node_1].append(node_2)
-        if node_2 not in self.nodes():
-            self.add_node(node_2)
+        self.add_node(node_1)
+        self.add_node(node_2)
+        self.graph_dict[node_1].append(node_2)
 
     def del_node(self, node):
         """delete the node 'n' from the graph"""
