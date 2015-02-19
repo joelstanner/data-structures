@@ -26,6 +26,11 @@ def test_add_node():
     assert 5 in test.graph_dict
 
 
+def test_add_node_if_already_present(test_graph):
+    test_graph.add_node(5)
+    assert 42 in test_graph.graph_dict[5]
+
+
 def test_add_edge():
     test = Graph()
     test.add_node(5)
