@@ -147,6 +147,37 @@ def test_adjacent_second_node_not_found(test_graph):
     assert 'Second node not found' in str(e.value)
 
 
-def test_depth_first(test_traversal_graph):
+def test_depth_first_from_node_0(test_traversal_graph):
     assert test_traversal_graph.depth_first_traversal(0) == [
         0, 1, 4, 5, 6, 7, 8, 2, 9, 3]
+
+
+def test_depth_first_from_node_1(test_traversal_graph):
+    assert test_traversal_graph.depth_first_traversal(1) == [
+        1, 4, 5, 6, 7, 8]
+
+
+def test_depth_first_no_edges():
+    test = Graph()
+    test.add_node(55)
+    test.add_node("test")
+    test.add_node(2)
+    assert test.depth_first_traversal(55) == [55]
+
+
+def test_depth_multiple_edges():
+    test = Graph()
+    for i in range(5):
+        test.add_node(i)
+    test.add_edge(0, 1)
+    test.add_edge(0, 2)
+    test.add_edge(1, 2)
+    test.add_edge(1, 3)
+    test.add_edge(2, 3)
+    test.add_edge(3, 4)
+
+    assert test.depth_first_traversal(0) == [0, 1, 2, 3, 4]
+
+
+def test_depth_cyclic(test_graph):
+    assert test_graph.depth_first_traversal(5) == [5, 42, "test"]
