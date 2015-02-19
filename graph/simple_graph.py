@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 class Graph(object):
     """Implements a graph data structure"""
 
@@ -69,3 +71,16 @@ class Graph(object):
             return node_2 in self.graph_dict[node_1]
         except KeyError:
             raise KeyError("First node not found")
+
+    def depth_first_traversal(self, start):
+        explored = OrderedDict()
+        return self._depth_first_traversal(start, explored)
+
+    def _depth_first_traversal(self, start, explored):
+        explored.setdefault(start, 1)
+
+        for child in self.graph_dict[start]:
+            if child not in explored:
+                self._depth_first_traversal(child, explored)
+
+        return explored.keys()

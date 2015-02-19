@@ -15,6 +15,23 @@ def test_graph():
     return test_graph
 
 
+@pytest.fixture(scope="function")
+def test_traversal_graph():
+    test_graph = Graph()
+    for i in range(10):
+        test_graph.add_node(i)
+    test_graph.add_edge(0, 1)
+    test_graph.add_edge(0, 2)
+    test_graph.add_edge(0, 3)
+    test_graph.add_edge(1, 4)
+    test_graph.add_edge(1, 5)
+    test_graph.add_edge(1, 8)
+    test_graph.add_edge(5, 6)
+    test_graph.add_edge(6, 7)
+    test_graph.add_edge(2, 9)
+
+    return test_graph
+
 def test_constructor():
     test = Graph()
     assert test.graph_dict == {}
@@ -128,3 +145,8 @@ def test_adjacent_second_node_not_found(test_graph):
     with pytest.raises(KeyError) as e:
         test_graph.adjacent("test", 47)
     assert 'Second node not found' in str(e.value)
+
+
+def test_depth_first(test_traversal_graph):
+    assert test_traversal_graph.depth_first_traversal(0) == [
+        0, 1, 4, 5, 6, 7, 8, 2, 9, 3]
