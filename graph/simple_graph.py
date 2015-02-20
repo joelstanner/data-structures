@@ -1,6 +1,7 @@
 from collections import OrderedDict
 from queue import Queue
 
+
 class Graph(object):
     """Implements a graph data structure"""
 
@@ -87,18 +88,21 @@ class Graph(object):
         return explored.keys()
 
     def breadth_first_traversal(self, start):
-        explored = OrderedDict()
-        queue = Queue()
-        explored.setdefault(start, 1)
+        try:
+            explored = OrderedDict()
+            queue = Queue()
+            explored.setdefault(start, 1)
 
-        queue.enqueue(start)
+            queue.enqueue(start)
 
-        while queue.size():
-            node = queue.dequeue()
+            while queue.size():
+                node = queue.dequeue()
 
-            for child in self.graph_dict[node]:
-                if child not in explored:
-                    explored.setdefault(child, 1)
-                    queue.enqueue(child)
+                for child in self.graph_dict[node]:
+                    if child not in explored:
+                        explored.setdefault(child, 1)
+                        queue.enqueue(child)
 
-        return explored.keys()
+            return explored.keys()
+        except KeyError:
+            raise KeyError("Node does not exist")

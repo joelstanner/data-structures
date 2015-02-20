@@ -205,5 +205,11 @@ def test_breadth_first(test_breadth_traversal_graph):
     assert test_breadth_traversal_graph.breadth_first_traversal(1) == range(1, 10)
 
 
+def test_breadth_first_from_node_3(test_breadth_traversal_graph):
+    assert test_breadth_traversal_graph.breadth_first_traversal(3) == [3]
 
 
+def test_breadth_first_from_non_existent_node(test_breadth_traversal_graph):
+    with pytest.raises(KeyError) as e:
+        test_breadth_traversal_graph.breadth_first_traversal(11)
+    assert "Node does not exist" in str(e.value)
