@@ -75,10 +75,17 @@ class Graph(object):
             raise KeyError("First node not found")
 
     def depth_first_traversal(self, start):
-        explored = OrderedDict()
-        return self._depth_first_traversal(start, explored)
+        """Perform a full depth-first traversal of the graph beginning at start.
+        Return the full visited path when traversal is complete.
+        """
+        try:
+            explored = OrderedDict()
+            return self._depth_first_traversal(start, explored)
+        except KeyError:
+            raise KeyError("Node does not exist")
 
     def _depth_first_traversal(self, start, explored):
+        """Helper function for depth_first_traversal for recursion"""
         explored.setdefault(start, 1)
 
         for child in self.graph_dict[start]:
@@ -88,6 +95,9 @@ class Graph(object):
         return explored.keys()
 
     def breadth_first_traversal(self, start):
+        """Perform a full breadth-first traversal of the graph, beginning at
+        start. Return the full visited path when traversal is complete.
+        """
         try:
             explored = OrderedDict()
             queue = Queue()
