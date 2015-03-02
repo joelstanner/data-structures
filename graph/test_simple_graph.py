@@ -1,6 +1,6 @@
 import pytest
 from simple_graph import Graph
-
+from collections import OrderedDict
 
 @pytest.fixture(scope="function")
 def test_graph():
@@ -140,7 +140,7 @@ def test_has_node_false(test_graph):
 
 
 def test_neighbors(test_graph):
-    assert test_graph.neighbors(5) == {42: 1}
+    assert test_graph.neighbors(5) == OrderedDict([(42, 1)])
 
 
 def test_neighbors_not_found(test_graph):
@@ -197,52 +197,9 @@ def test_depth_multiple_edges():
     assert test.depth_first_traversal(0) == [0, 1, 2, 3, 4]
 
 
-def test_depth_first_from_non_existent_node(test_depth_traversal_graph):
-    with pytest.raises(KeyError) as e:
-        test_depth_traversal_graph.depth_first_traversal(11)
-    assert "Node does not exist" in str(e.value)
-
-
 def test_depth_cyclic(test_graph):
     assert test_graph.depth_first_traversal(5) == [5, 42, "test"]
 
 
 def test_breadth_first(test_breadth_traversal_graph):
-    assert (
-        test_breadth_traversal_graph.breadth_first_traversal(1) == range(1, 10))
-
-
-def test_breadth_first_from_node_3(test_breadth_traversal_graph):
-    assert test_breadth_traversal_graph.breadth_first_traversal(3) == [3]
-
-
-def test_breadth_first_from_non_existent_node(test_breadth_traversal_graph):
-    with pytest.raises(KeyError) as e:
-        test_breadth_traversal_graph.breadth_first_traversal(11)
-    assert "Node does not exist" in str(e.value)
-
-
-def test_breadth_cyclic(test_graph):
-    assert test_graph.breadth_first_traversal(5) == [5, 42, "test"]
-
-
-def test_breadth_first_no_edges():
-    test = Graph()
-    test.add_node(55)
-    test.add_node("test")
-    test.add_node(2)
-    assert test.breadth_first_traversal(55) == [55]
-
-
-def test_breadth_multiple_edges():
-    test = Graph()
-    for i in range(5):
-        test.add_node(i)
-    test.add_edge(0, 1)
-    test.add_edge(0, 2)
-    test.add_edge(1, 2)
-    test.add_edge(1, 3)
-    test.add_edge(2, 3)
-    test.add_edge(3, 4)
-
-    assert test.breadth_first_traversal(0) == [0, 1, 2, 3, 4]
+    assert test_breadth_traversal_graph.breadth_first_traversal(1) == range(1, 10)
