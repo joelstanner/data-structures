@@ -203,3 +203,15 @@ def test_depth_cyclic(test_graph):
 
 def test_breadth_first(test_breadth_traversal_graph):
     assert test_breadth_traversal_graph.breadth_first_traversal(1) == range(1, 10)
+
+
+def test_add_edge_with_default_weight():
+    test = Graph()
+    test.add_edge(1, 2)
+    assert test.graph_dict[1] == OrderedDict([(2, 1)])
+
+
+def test_add_edge_with_weight_parameter():
+    test = Graph()
+    test.add_edge(1, 2, 10000)
+    assert test.graph_dict[1] == OrderedDict([(2, 10000)])
