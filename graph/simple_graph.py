@@ -33,7 +33,7 @@ class Graph(object):
             self.graph_dict[node_1][node_2] = weight
         except KeyError:
             self.add_node(node_1)
-            self.graph_dict[node_1].append(node_2)
+            self.graph_dict[node_1][node_2] = weight
         if node_2 not in self.nodes():
             self.add_node(node_2)
 
@@ -59,7 +59,7 @@ class Graph(object):
         return node in self.graph_dict
 
     def neighbors(self, node):
-        """return the list of all nodes connected to 'n' by edges"""
+        """return the dict of all nodes connected to 'n' by edges"""
         try:
             return self.graph_dict[node]
         except KeyError:

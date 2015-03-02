@@ -120,7 +120,7 @@ def test_del_edge(test_graph):
 
 
 def test_del_edge_not_found(test_graph):
-    with pytest.raises(ValueError) as e:
+    with pytest.raises(KeyError) as e:
         test_graph.del_edge(5, "test")
     assert "Edge not found" in str(e.value)
 
@@ -128,7 +128,7 @@ def test_del_edge_not_found(test_graph):
 def test_del_edge_node_not_found(test_graph):
     with pytest.raises(KeyError) as e:
         test_graph.del_edge(8, "test")
-    assert "First node not found" in str(e.value)
+    assert "Edge not found" in str(e.value)
 
 
 def test_has_node_true(test_graph):
@@ -140,7 +140,7 @@ def test_has_node_false(test_graph):
 
 
 def test_neighbors(test_graph):
-    assert test_graph.neighbors(5) == [42]
+    assert test_graph.neighbors(5) == {42: 1}
 
 
 def test_neighbors_not_found(test_graph):
