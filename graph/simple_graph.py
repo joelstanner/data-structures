@@ -4,6 +4,7 @@ from queue import Queue
 
 W_DEFAULT = 1
 
+
 class Graph(object):
     """Implements a graph data structure"""
 
@@ -52,7 +53,6 @@ class Graph(object):
             del self.graph_dict[node_1][node_2]
         except KeyError:
             raise KeyError("Edge not found")
-        
 
     def has_node(self, node):
         """True if node 'n' is contained in the graph, False if not"""
