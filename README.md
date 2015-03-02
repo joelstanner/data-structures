@@ -22,6 +22,8 @@ This repository holds sample code for a number of classic data structures implem
     -  As described from [Python Patterns - Implementing Graphs](https://www.python.org/doc/essays/graphs/) "Graphs are networks consisting of nodes connected by edges or arcs. In directed graphs, the connections between nodes have a direction, and are called arcs."
     - Graph Traversal
         - Graph traversal is explored in a [depth first](http://en.wikipedia.org/wiki/Depth-first_search) and [breadth first](http://en.wikipedia.org/wiki/Breadth-first_search) style.
+    - Graph weighting
+        - Edges accept value weights or default to one if none is provided
 
 ## Resources
 [Linked Lists Wiki](http://en.wikipedia.org/wiki/Linked_list)  
@@ -35,6 +37,9 @@ This repository holds sample code for a number of classic data structures implem
 
 
 Pytest - for testing structure functions
+Travis CI
+[![Build Status](https://travis-ci.org/henrykh/data-structures.svg)](https://travis-ci.org/henrykh/data-structures)
+
 
 ##Collaborators
 Joel Stanner  
