@@ -9,7 +9,7 @@ def test_graph():
     test_graph.add_node(42)
     test_graph.add_node("test")
     test_graph.add_edge(5, 42)
-    test_graph.add_edge(42, "test")
+    test_graph.add_edge(42, "test", 1000)
     test_graph.add_edge("test", 5)
 
     return test_graph
@@ -91,12 +91,24 @@ def test_add_edge_second_node_new():
     assert "test" in test.graph_dict[55]
 
 
+def test_add_edge_with_default_weight():
+    test = Graph()
+    test.add_edge(1, 2)
+    assert test.graph_dict[1] == OrderedDict([(2, 1)])
+
+
+def test_add_edge_with_weight_parameter():
+    test = Graph()
+    test.add_edge(1, 2, 10000)
+    assert test.graph_dict[1] == OrderedDict([(2, 10000)])
+
+
 def test_nodes(test_graph):
     assert test_graph.nodes() == ["test", 42, 5]
 
 
 def test_edges(test_graph):
-    assert test_graph.edges() == [("test", 5), (42, "test"), (5, 42)]
+    assert test_graph.edges() == [("test", 5, 1), (42, "test", 1000), (5, 42, 1)]
 
 
 def test_del_node(test_graph):
@@ -203,15 +215,3 @@ def test_depth_cyclic(test_graph):
 
 def test_breadth_first(test_breadth_traversal_graph):
     assert test_breadth_traversal_graph.breadth_first_traversal(1) == range(1, 10)
-
-
-def test_add_edge_with_default_weight():
-    test = Graph()
-    test.add_edge(1, 2)
-    assert test.graph_dict[1] == OrderedDict([(2, 1)])
-
-
-def test_add_edge_with_weight_parameter():
-    test = Graph()
-    test.add_edge(1, 2, 10000)
-    assert test.graph_dict[1] == OrderedDict([(2, 10000)])
