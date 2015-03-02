@@ -1,5 +1,5 @@
 from collections import OrderedDict
-from queue import Queue
+# from queue import Queue
 
 
 W_DEFAULT = 1
@@ -18,8 +18,8 @@ class Graph(object):
     def edges(self):
         """return a list of all edges in the graph"""
 
-        return [(key, node) for key, value in
-                self.graph_dict.iteritems() for node in value]
+        return [(key, node, weight) for key, edge_dict in
+                self.graph_dict.iteritems() for node, weight in edge_dict.items()]
 
     def add_node(self, node):
         """add a new node 'n' to the graph"""
@@ -95,25 +95,25 @@ class Graph(object):
 
         return explored.keys()
 
-    def breadth_first_traversal(self, start):
-        """Perform a full breadth-first traversal of the graph, beginning at
-        start. Return the full visited path when traversal is complete.
-        """
-        try:
-            explored = OrderedDict()
-            queue = Queue()
-            explored.setdefault(start, 1)
+    # def breadth_first_traversal(self, start):
+    #     """Perform a full breadth-first traversal of the graph, beginning at
+    #     start. Return the full visited path when traversal is complete.
+    #     """
+    #     try:
+    #         explored = OrderedDict()
+    #         queue = Queue()
+    #         explored.setdefault(start, 1)
 
-            queue.enqueue(start)
+    #         queue.enqueue(start)
 
-            while queue.size():
-                node = queue.dequeue()
+    #         while queue.size():
+    #             node = queue.dequeue()
 
-                for child in self.graph_dict[node]:
-                    if child not in explored:
-                        explored.setdefault(child, 1)
-                        queue.enqueue(child)
+    #             for child in self.graph_dict[node]:
+    #                 if child not in explored:
+    #                     explored.setdefault(child, 1)
+    #                     queue.enqueue(child)
 
-            return explored.keys()
-        except KeyError:
-            raise KeyError("Node does not exist")
+    #         return explored.keys()
+    #     except KeyError:
+    #         raise KeyError("Node does not exist")
