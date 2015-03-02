@@ -2,6 +2,8 @@ from collections import OrderedDict
 from queue import Queue
 
 
+W_DEFAULT = 1
+
 class Graph(object):
     """Implements a graph data structure"""
 
@@ -20,14 +22,14 @@ class Graph(object):
 
     def add_node(self, node):
         """add a new node 'n' to the graph"""
-        self.graph_dict.setdefault(node, [])
+        self.graph_dict.setdefault(node, {})
 
-    def add_edge(self, node_1, node_2):
+    def add_edge(self, node_1, node_2, weight=W_DEFAULT):
         """add a new edge to the graph connecting 'n1' and 'n2', if either n1
         or n2 are not already present in the graph, they are added.
         """
         try:
-            self.graph_dict[node_1].append(node_2)
+            self.graph_dict[node_1][node_2] = weight
         except KeyError:
             self.add_node(node_1)
             self.graph_dict[node_1].append(node_2)
