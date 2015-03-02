@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/henrykh/data-structures.svg)](https://travis-ci.org/henrykh/data-structures)  
+
 # data-structures
 
 This repository holds sample code for a number of classic data structures implemented in Python.
@@ -38,7 +40,6 @@ This repository holds sample code for a number of classic data structures implem
 
 Pytest - for testing structure functions
 Travis CI
-[![Build Status](https://travis-ci.org/henrykh/data-structures.svg)](https://travis-ci.org/henrykh/data-structures)
 
 
 ##Collaborators
