@@ -40,20 +40,19 @@ class Graph(object):
         """delete the node 'n' from the graph"""
         try:
             del self.graph_dict[node]
-            for val_list in self.graph_dict.values():
-                if node in val_list:
-                    val_list.remove(node)
+            for val_dict in self.graph_dict.values():
+                if node in val_dict:
+                    del val_dict[node]
         except KeyError:
             raise KeyError("Node not found")
 
     def del_edge(self, node_1, node_2):
         """delete the edge connecting 'n1' and 'n2' from the graph"""
         try:
-            self.graph_dict[node_1].remove(node_2)
+            del self.graph_dict[node_1][node_2]
         except KeyError:
-            raise KeyError("First node not found")
-        except ValueError:
-            raise ValueError("Edge not found")
+            raise KeyError("Edge not found")
+        
 
     def has_node(self, node):
         """True if node 'n' is contained in the graph, False if not"""
