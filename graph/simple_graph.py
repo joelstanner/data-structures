@@ -119,12 +119,11 @@ class Graph(object):
             raise KeyError("Node does not exist")
 
     def dijkstra_shortest(self, start, end):
-        """This is Dijkstra's shortest path implementation"""
+        """Implementation of Dijkstra's shortest path algorithm, returns a list of shortest path from start to end"""
         if start is end:
             return [start]
-        distance = {}
+        distance = {start: 0}
         previous_node = {}
-        distance[start] = 0
         pqueue = PriorityQueue()
         for node in self.nodes():
             if node is not start:
