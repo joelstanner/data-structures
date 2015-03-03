@@ -50,6 +50,56 @@ def test_breadth_traversal_graph():
     return test_graph
 
 
+@pytest.fixture(scope="function")
+def test_weighted_graph():
+    test_graph = Graph()
+    test_graph.add_edge("A", "B", 2)
+    test_graph.add_edge("A", "C", 5)
+    test_graph.add_edge("B", "C", 2)
+    test_graph.add_edge("B", "D", 6)
+    test_graph.add_edge("C", "D", 2)
+
+    return test_graph
+
+@pytest.fixture(scope="function")
+def test_complex_weighted_graph():
+    test_graph = Graph()
+    test_graph.add_edge("A", "B", 1)
+    test_graph.add_edge("A", "D", 7)
+    test_graph.add_edge("B", "G", 5)
+    test_graph.add_edge("B", "D", 4)
+    test_graph.add_edge("C", "B", 4)
+    test_graph.add_edge("C", "E", 6)
+    test_graph.add_edge("C", "F", 4)
+    test_graph.add_edge("D", "B", 7)
+    test_graph.add_edge("D", "F", 5)
+    test_graph.add_edge("D", "H", 1)
+    test_graph.add_edge("E", "G", 3)
+    test_graph.add_edge("F", "B", 2)
+    test_graph.add_edge("F", "G", 9)
+    test_graph.add_edge("F", "D", 7)
+    test_graph.add_edge("G", "C", 9)
+    test_graph.add_edge("G", "F", 7)
+
+    return test_graph
+
+
+@pytest.fixture(scope="function")
+def test_loop_weighted_graph():
+    test_graph = Graph()
+    test_graph.add_edge("A", "B", 1)
+    test_graph.add_edge("B", "C", 2)
+    test_graph.add_edge("B", "E", 7)
+    test_graph.add_edge("C", "B", 4)
+    test_graph.add_edge("C", "D", 6)
+    test_graph.add_edge("D", "C", 1)
+    test_graph.add_edge("D", "E", 7)
+    test_graph.add_edge("E", "D", 3)
+    test_graph.add_edge("E", "B", 10)
+
+    return test_graph
+
+
 def test_constructor():
     test = Graph()
     assert test.graph_dict == {}
@@ -152,7 +202,7 @@ def test_has_node_false(test_graph):
 
 
 def test_neighbors(test_graph):
-    assert test_graph.neighbors(5) == OrderedDict([(42, 1)])
+    assert test_graph.neighbors(5) == [42]
 
 
 def test_neighbors_not_found(test_graph):
@@ -215,3 +265,23 @@ def test_depth_cyclic(test_graph):
 
 def test_breadth_first(test_breadth_traversal_graph):
     assert test_breadth_traversal_graph.breadth_first_traversal(1) == range(1, 10)
+
+
+def test_dijkstra(test_weighted_graph):
+    assert test_weighted_graph.dijkstra_shortest('A', 'D') == ['A', 'B', 'C', 'D']
+
+
+def test_dijkstra_complex(test_complex_weighted_graph):
+    assert test_complex_weighted_graph.dijkstra_shortest('G', 'D') == ['G', 'F', 'B', 'D']
+
+
+def test_dijkstra_no_path(test_complex_weighted_graph):
+    assert test_complex_weighted_graph.dijkstra_shortest('F', 'A') == "No Path Found"
+
+
+def test_dijkstra_same_start_end(test_complex_weighted_graph):
+    assert test_complex_weighted_graph.dijkstra_shortest('A', 'A') == ['A']
+
+
+def test_dijkstra_loop(test_loop_weighted_graph):
+    assert test_loop_weighted_graph.dijkstra_shortest('D', 'A') == "No Path Found"

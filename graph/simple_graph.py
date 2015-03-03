@@ -118,8 +118,10 @@ class Graph(object):
         except KeyError:
             raise KeyError("Node does not exist")
 
-    def shortest_d(self, start, end):
+    def dijkstra_shortest(self, start, end):
         """This is Dijkstra's shortest path implementation"""
+        if start is end:
+            return [start]
         distance = {}
         previous_node = {}
         distance[start] = 0
@@ -131,11 +133,23 @@ class Graph(object):
             pqueue.put((distance[node], node))  # (priority, data)
 
         while pqueue:
-            current = pqueue.get()
+            current = pqueue.get()[1]
+            if current == end:
+                break
             for neighbor in self.neighbors(current):
                 alt = distance[current] + self.graph_dict[current][neighbor]
                 if alt < distance[neighbor]:
                     distance[neighbor] = alt
                     previous_node[neighbor] = current
                     pqueue.put((distance[neighbor], neighbor))
-        return something
+
+        path = []
+        while end is not start:
+            path.append(end)
+            try:
+                end = previous_node[end]
+            except KeyError:
+                return "No Path Found"
+        path.append(start)
+        path.reverse()
+        return path
