@@ -1,5 +1,6 @@
 from collections import OrderedDict
 from queue import Queue
+from Queue import PriorityQueue
 
 
 W_DEFAULT = 1
@@ -116,3 +117,25 @@ class Graph(object):
             return explored.keys()
         except KeyError:
             raise KeyError("Node does not exist")
+
+    def shortest_d(self, start, end):
+        """This is Dijkstra's shortest path implementation"""
+        distance = {}
+        previous_node = {}
+        distance[start] = 0
+        pqueue = PriorityQueue()
+        for node in self.nodes():
+            if node is not start:
+                distance[node] = float('inf')
+                previous_node['node'] = None
+            pqueue.put((distance[node], node))  # (priority, data)
+
+        while pqueue:
+            current = pqueue.get()
+            for neighbor in self.neighbors(current):
+                alt = distance[current] + self.graph_dict[current][neighbor]
+                if alt < distance[neighbor]:
+                    distance[neighbor] = alt
+                    previous_node[neighbor] = current
+                    pqueue.put((distance[neighbor], neighbor))
+        return something
