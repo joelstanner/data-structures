@@ -2,6 +2,7 @@ import pytest
 from simple_graph import Graph
 from collections import OrderedDict
 
+
 @pytest.fixture(scope="function")
 def test_graph():
     test_graph = Graph()
@@ -268,15 +269,18 @@ def test_breadth_first(test_breadth_traversal_graph):
 
 
 def test_dijkstra(test_weighted_graph):
-    assert test_weighted_graph.dijkstra_shortest('A', 'D') == ['A', 'B', 'C', 'D']
+    assert test_weighted_graph.dijkstra_shortest('A', 'D') == ['A', 'B',
+                                                               'C', 'D']
 
 
 def test_dijkstra_complex(test_complex_weighted_graph):
-    assert test_complex_weighted_graph.dijkstra_shortest('G', 'D') == ['G', 'F', 'B', 'D']
+    assert test_complex_weighted_graph.dijkstra_shortest('G', 'D') == ['G', 'F',
+                                                                       'B', 'D']
 
 
 def test_dijkstra_no_path(test_complex_weighted_graph):
-    assert test_complex_weighted_graph.dijkstra_shortest('F', 'A') == "No Path Found"
+    assert test_complex_weighted_graph.dijkstra_shortest('F', 'A') == (
+        "No Path Found")
 
 
 def test_dijkstra_same_start_end(test_complex_weighted_graph):
@@ -284,4 +288,24 @@ def test_dijkstra_same_start_end(test_complex_weighted_graph):
 
 
 def test_dijkstra_loop(test_loop_weighted_graph):
-    assert test_loop_weighted_graph.dijkstra_shortest('D', 'A') == "No Path Found"
+    assert test_loop_weighted_graph.dijkstra_shortest('D', 'A') == (
+        "No Path Found")
+
+
+def test_bellman_ford(test_weighted_graph):
+    assert test_weighted_graph.bellman_ford_shortest('A', 'D') == ['A', 'B',
+                                                                   'C', 'D']
+
+
+def test_belman_ford_complex(test_complex_weighted_graph):
+    assert test_complex_weighted_graph.bellman_ford_shortest('G', 'D') == [
+        'G', 'F', 'B', 'D']
+
+
+def test_bellman_ford_no_path(test_complex_weighted_graph):
+    assert test_complex_weighted_graph.bellman_ford_shortest('F', 'A') == (
+        "No Path Found")
+
+
+def test_bellman_ford_same_start_end(test_complex_weighted_graph):
+    assert test_complex_weighted_graph.bellman_ford_shortest('A', 'A') == ['A']

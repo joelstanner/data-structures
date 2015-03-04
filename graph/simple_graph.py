@@ -168,7 +168,7 @@ class Graph(object):
                 previous_node[node] = None
 
         # Step 2: relax edges repeatedly
-        for i in range(1, len(self.nodes - 1)):
+        for i in range(1, len(self.nodes()) - 1):
             for edge in self.edges():
                 if distance[edge[0]] + edge[2] < distance[edge[1]]:
                     distance[edge[1]] = distance[edge[0]] + edge[2]
@@ -176,7 +176,7 @@ class Graph(object):
 
         # Step 3: check for negative-weight cycles
         for edge in self.edges():
-            if distance[edge[0]] + edge[2] < distance[1]:
+            if distance[edge[0]] + edge[2] < distance[edge[1]]:
                 raise Exception("Graph contains a negative-weight cycle")
 
         path = []
