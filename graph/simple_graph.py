@@ -119,7 +119,8 @@ class Graph(object):
             raise KeyError("Node does not exist")
 
     def dijkstra_shortest(self, start, end):
-        """Implementation of Dijkstra's shortest path algorithm, returns a list of shortest path from start to end"""
+        """Implementation of Dijkstra's shortest path algorithm, returns a list
+        of shortest path from start to end"""
         if start is end:
             return [start]
         distance = {start: 0}
@@ -141,6 +142,42 @@ class Graph(object):
                     distance[neighbor] = alt
                     previous_node[neighbor] = current
                     pqueue.put((distance[neighbor], neighbor))
+
+        path = []
+        while end is not start:
+            path.append(end)
+            try:
+                end = previous_node[end]
+            except KeyError:
+                return "No Path Found"
+        path.append(start)
+        path.reverse()
+        return path
+
+    def bellman_ford_shortest(self, start, end):
+        """Implementation of Bellman-Ford's shortest path algorithm, returns a
+        list of shortest path from start to end"""
+        if start is end:
+            return [start]
+        distance = {start: 0}
+        previous_node = {}
+        # Step 1: initialize graph
+        for node in self.nodes():
+            if node is not start:
+                distance[node] = float('inf')
+                previous_node[node] = None
+
+        # Step 2: relax edges repeatedly
+        for i in range(1, len(self.nodes - 1)):
+            for edge in self.edges():
+                if distance[edge[0]] + edge[2] < distance[edge[1]]:
+                    distance[edge[1]] = distance[edge[0]] + edge[2]
+                    previous_node[edge[1]] = edge[0]
+
+        # Step 3: check for negative-weight cycles
+        for edge in self.edges():
+            if distance[edge[0]] + edge[2] < distance[1]:
+                raise Exception("Graph contains a negative-weight cycle")
 
         path = []
         while end is not start:
