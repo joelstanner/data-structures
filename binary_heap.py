@@ -82,9 +82,9 @@ class BinaryHeap(object):
 
         children_indices = []
 
-        if len(self._list) > 2*parent + 1:
-            children_indices.append(2*parent+1)
-        if len(self._list) > 2*parent + 2:
-            children_indices.append(2*parent+2)
+        if len(self._list) > 2 * parent + 1:
+            children_indices.append(2 * parent + 1)
+        if len(self._list) > 2 * parent + 2:
+            children_indices.append(2 * parent + 2)
 
         return children_indices
