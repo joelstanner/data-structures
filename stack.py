@@ -23,7 +23,7 @@ class Stack(object):
 
 
 class Item(object):
-    """Wrapper for a data item that get pushed on the stack"""
+    """Wrapper for a data item that gets pushed on the stack"""
 
     def __init__(self, data, next_item=None):
         self.data = data
